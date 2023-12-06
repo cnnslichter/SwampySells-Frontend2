@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import { useNavigate, useParams } from 'react-router-dom';
 import Header from "./Header";
-import { Buffer } from 'buffer';
 
 import '../styles/ViewItem.css';
 
@@ -14,15 +13,14 @@ export const ViewItem = () => {
     useEffect(() => {
         const retrieveItem = async () => {
             try {
-                const response = await fetch(`https://swampysells-api.onrender.com/api/item/${id}`)
+                const response = await fetch(`https://swampysells.onrender.com/api/item/${id}`)
                 const responseData = await response.json();
-                const base64 = Buffer.from(responseData.image.data).toString('base64');
 
                 setDetails({
                     title: responseData.title,
                     price: responseData.price,
                     description: responseData.description,
-                    image: `data:image/png;base64, ${base64}`,
+                    image: responseData.image,
                     condition: responseData.condition,
                     sellerId: responseData.user
                     // comments: responseData.comments

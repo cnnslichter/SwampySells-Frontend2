@@ -22,7 +22,7 @@ export const Post = (props) => {
         const image = event.target.files[0]
         if (image == null)
             setImage('')
-        else if (image.size <= (16 * 1024 * 1024))
+        else if (image.size <= (10 * 1024 * 1024))
             setImage(image)
         else
             toast.error('File cannot exceed 16 megabytes')
@@ -42,7 +42,7 @@ export const Post = (props) => {
         formData.append('location', user.location);
     
         try {
-            const response = await fetch('https://swampysells-api.onrender.com/api/item/:id', {
+            const response = await fetch('https://swampysells.onrender.com/api/item/:id', {
               method: 'POST',
               body: formData,
             });
